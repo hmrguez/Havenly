@@ -1,0 +1,28 @@
+user:
+    - email
+    - password
+    - tenant
+    
+tenant:
+    - name
+    - user
+    - age
+    - occupation
+    - avg monthly income
+    - co - proprietaries: [tenant]
+
+property:
+    - address
+    - state
+    - city
+    - zip
+
+lease:
+    - tenant
+    - property
+    - start date
+    - end date
+    - rent
+    - deposit
+    - payment method
+    - payment day
