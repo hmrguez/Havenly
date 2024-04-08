@@ -1,7 +1,9 @@
 using Havenly.Application.Authentication;
 using Havenly.Application.Common.Interfaces.Authentication;
+using Havenly.Application.Common.Interfaces.Persistence;
 using Havenly.Application.Common.Interfaces.Services;
 using Havenly.Infrastructure.Authentication;
+using Havenly.Infrastructure.Persistence;
 using Havenly.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,10 +16,12 @@ public static class DependencyInjection
         ConfigurationManager configuration)
     {
         services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
-        
+
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-        
+
+        services.AddScoped<IUserRepository, UserRepository>();
+
         return services;
     }
 }

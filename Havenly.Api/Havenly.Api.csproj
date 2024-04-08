@@ -12,6 +12,7 @@
         <PackageReference Include="HotChocolate.AspNetCore" Version="14.0.0-p.86"/>
         <PackageReference Include="HotChocolate.AspNetCore.Playground" Version="10.5.5"/>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 

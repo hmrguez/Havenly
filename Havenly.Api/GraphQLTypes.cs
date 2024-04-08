@@ -5,7 +5,7 @@ namespace Havenly.Api;
 
 public static class GraphQlTypes
 {
-    public static IServiceCollection AddGraphQlTypes(this IServiceCollection services)
+    public static IServiceCollection AddGraphQl(this IServiceCollection services)
     {
         services
             .AddGraphQLServer()
