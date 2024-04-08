@@ -6,7 +6,7 @@ var builder = WebApplication.CreateSlimBuilder(args);
 {
     builder.Services
         .AddApplication()
-        .AddInfrastructure()
+        .AddInfrastructure(builder.Configuration)
         .AddGraphQlTypes();
 }
 
