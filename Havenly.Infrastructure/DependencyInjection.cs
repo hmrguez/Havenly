@@ -1,4 +1,3 @@
-using Havenly.Application.Authentication;
 using Havenly.Application.Common.Interfaces.Authentication;
 using Havenly.Application.Common.Interfaces.Persistence;
 using Havenly.Application.Common.Interfaces.Services;

@@ -1,4 +1,3 @@
-using System.Security.Authentication;
 using Domain.Entities;
 using Domain.Errors;
 using Havenly.Application.Common.Interfaces.Authentication;
@@ -25,7 +24,7 @@ public class AuthenticationService(IJwtTokenGenerator jwtTokenGenerator, IUserRe
         if (await userRepository.GetByEmail(input.Email) != null)
             throw new AuthenticationErrors.DuplicateUserException("Duplicate User");
 
-        var user = new User()
+        var user = new User
         {
             Email = input.Email,
             Password = input.Password,
