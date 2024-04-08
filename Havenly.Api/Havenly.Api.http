@@ -1,6 +1,0 @@
-@Havenly.Api_HostAddress = http://localhost:5222
-
-GET {{Havenly.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

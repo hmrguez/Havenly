@@ -1,15 +1,13 @@
-using Havenly.Api.Authentication;
-using Havenly.Api.Users;
-using Havenly.Application.Authentication;
+using Havenly.Api;
+using Havenly.Application;
+using Havenly.Infrastructure;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 {
-    builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-
     builder.Services
-        .AddGraphQLServer()
-        .AddQueryType<UserQuery>()
-        .AddMutationType<AuthenticationMutation>();
+        .AddApplication()
+        .AddInfrastructure()
+        .AddGraphQlTypes();
 }
 
 var app = builder.Build();
