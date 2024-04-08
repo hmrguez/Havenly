@@ -6,9 +6,9 @@ public class UserQuery
     {
         return new List<User>
         {
-            new User { Name = "User1", Age = 30 },
-            new User { Name = "User2", Age = 25 },
-            new User { Name = "User3", Age = 35 },
+            new() { Name = "User1", Age = 30 },
+            new() { Name = "User2", Age = 25 },
+            new() { Name = "User3", Age = 35 }
         };
     }
 }

@@ -6,9 +6,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\src\Havenly.Contracts\Havenly.Contracts.csproj"/>
-        <ProjectReference Include="..\src\Havenly.Domain\Havenly.Domain.csproj"/>
-    </ItemGroup>
-
 </Project>

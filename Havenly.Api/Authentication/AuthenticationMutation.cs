@@ -2,17 +2,15 @@ using Havenly.Application.Authentication;
 
 namespace Havenly.Api.Authentication;
 
-public class AuthenticationMutation
+public class AuthenticationMutation(IAuthenticationService authenticationService)
 {
-    public async Task<AuthenticationResponse> Login(LoginRequest input)
+    public Task<AuthenticationResponse> Login(LoginRequest input)
     {
-        await Task.CompletedTask;
-        return new AuthenticationResponse(Guid.NewGuid(), "login-token");
+        return authenticationService.Login(input);
     }
 
-    public async Task<AuthenticationResponse> Register(RegisterRequest input)
+    public Task<AuthenticationResponse> Register(RegisterRequest input)
     {
-        await Task.CompletedTask;
-        return new AuthenticationResponse(Guid.NewGuid(), "register-token");
+        return authenticationService.Register(input);
     }
 }
