@@ -3,6 +3,7 @@ using Havenly.Application.Common.Interfaces.Persistence;
 using Havenly.Application.Common.Interfaces.Services;
 using Havenly.Infrastructure.Authentication;
 using Havenly.Infrastructure.Persistence;
+using Havenly.Infrastructure.Persistence.Repositories;
 using Havenly.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

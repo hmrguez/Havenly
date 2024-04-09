@@ -1,7 +1,7 @@
 using Domain.Entities;
 using Havenly.Application.Common.Interfaces.Persistence;
 
-namespace Havenly.Infrastructure.Persistence;
+namespace Havenly.Infrastructure.Persistence.Repositories;
 
 public class UserRepository : IUserRepository
 {

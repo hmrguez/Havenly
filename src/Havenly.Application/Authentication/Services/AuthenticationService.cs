@@ -24,12 +24,12 @@ public class AuthenticationService(IJwtTokenGenerator jwtTokenGenerator, IUserRe
         if (await userRepository.GetByEmail(input.Email) != null)
             throw new AuthenticationErrors.DuplicateUserException("Duplicate User");
 
-        var user = new User
-        {
-            Email = input.Email,
-            Password = input.Password,
-            Name = input.Username
-        };
+        var user = User.Create(
+            input.Username,
+            input.Password,
+            input.Email,
+            false,
+            input.ContactInfo);
 
         await userRepository.Add(user);
         return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id, user.Email));
