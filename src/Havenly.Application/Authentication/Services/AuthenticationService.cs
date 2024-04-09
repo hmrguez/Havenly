@@ -16,7 +16,7 @@ public class AuthenticationService(IJwtTokenGenerator jwtTokenGenerator, IUserRe
         if (user.Password != input.Password)
             throw new AuthenticationErrors.InvalidCredentialsException("Invalid Password");
 
-        return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id, input.Email));
+        return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id.Value, input.Email));
     }
 
     public async Task<AuthenticationResponse> Register(RegisterRequest input)
@@ -32,6 +32,6 @@ public class AuthenticationService(IJwtTokenGenerator jwtTokenGenerator, IUserRe
             input.ContactInfo);
 
         await userRepository.Add(user);
-        return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id, user.Email));
+        return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id.Value, user.Email));
     }
 }

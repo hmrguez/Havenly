@@ -5,6 +5,7 @@ using Havenly.Infrastructure.Authentication;
 using Havenly.Infrastructure.Persistence;
 using Havenly.Infrastructure.Persistence.Repositories;
 using Havenly.Infrastructure.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +16,12 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services,
         ConfigurationManager configuration)
     {
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseNpgsql(
+                configuration.GetConnectionString("DefaultConnection"),
+                b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+
+
         services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
 
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();

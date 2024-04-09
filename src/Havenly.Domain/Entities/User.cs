@@ -1,8 +1,10 @@
+using Domain.Aggregates;
 using Domain.Common.Models;
+using Domain.ValueObjects;
 
 namespace Domain.Entities;
 
-public class User : Entity<Guid>
+public class User : Entity<UserId>
 {
     public string Name { get; set; }
     public string Password { get; set; }
@@ -11,7 +13,13 @@ public class User : Entity<Guid>
     public bool IsOwner { get; set; }
     public string ContactInfo { get; set; }
 
-    private User(Guid id, string name, string password, string email, bool isOwner, string contactInfo) : base(id)
+
+    public User()
+    {
+    }
+
+
+    private User(UserId id, string name, string password, string email, bool isOwner, string contactInfo) : base(id)
     {
         Name = name;
         Password = password;
@@ -22,6 +30,6 @@ public class User : Entity<Guid>
 
     public static User Create(string name, string password, string email, bool isOwner, string contactInfo)
     {
-        return new User(Guid.NewGuid(), name, password, email, isOwner, contactInfo);
+        return new User(UserId.CreateUnique(), name, password, email, isOwner, contactInfo);
     }
 }

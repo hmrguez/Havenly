@@ -2,14 +2,9 @@ using Domain.Common.Models;
 
 namespace Domain.ValueObjects;
 
-public class TenantId : ValueObject
+public class TenantId(Guid value) : ValueObject
 {
-    public Guid Value { get; set; }
-
-    private TenantId(Guid value)
-    {
-        Value = value;
-    }
+    public Guid Value { get; set; } = value;
 
     public static TenantId CreateUnique() => new(Guid.NewGuid());
 

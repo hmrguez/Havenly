@@ -4,6 +4,10 @@ public abstract class Entity<TId> : IEquatable<Entity<TId>> where TId : notnull
 {
     public TId Id { get; }
 
+    protected Entity()
+    {
+    }
+
     protected Entity(TId id)
     {
         Id = id;

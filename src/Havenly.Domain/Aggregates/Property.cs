@@ -12,7 +12,18 @@ public class Property : AggregateRoot<PropertyId>
 
     public OwnerId OwnerId { get; set; }
     public Owner Owner { get; set; }
-    public List<Amenity> Amenity { get; set; }
+    public List<Amenity> Amenities { get; set; }
+
+    public int SquareFootage { get; set; }
+    public int Bedrooms { get; set; }
+    public int Bathrooms { get; set; }
+
+    public int Price { get; set; }
+    public int RentalPrice { get; set; }
+
+    public Property()
+    {
+    }
 
     private Property(PropertyId id, Address address, PropertyType type, OwnerId ownerId, Owner owner) : base(id)
     {
@@ -20,7 +31,7 @@ public class Property : AggregateRoot<PropertyId>
         Type = type;
         OwnerId = ownerId;
         Owner = owner;
-        Amenity = [];
+        Amenities = [];
     }
 
     public static Property Create(Address address, PropertyType type, OwnerId ownerId, Owner owner)

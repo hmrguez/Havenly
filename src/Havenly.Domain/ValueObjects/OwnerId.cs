@@ -2,14 +2,9 @@ using Domain.Common.Models;
 
 namespace Domain.ValueObjects;
 
-public class OwnerId : ValueObject
+public class OwnerId(Guid value) : ValueObject
 {
-    public Guid Value { get; set; }
-
-    private OwnerId(Guid value)
-    {
-        Value = value;
-    }
+    public Guid Value { get; set; } = value;
 
     public static OwnerId CreateUnique() => new(Guid.NewGuid());
 

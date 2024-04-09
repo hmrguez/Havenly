@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.ValueObjects;
 using Havenly.Application.Common.Interfaces.Persistence;
 
 namespace Havenly.Infrastructure.Persistence.Repositories;
@@ -7,7 +8,7 @@ public class UserRepository : IUserRepository
 {
     private readonly List<User> _users = [];
 
-    public async Task<User?> GetById(Guid id)
+    public async Task<User?> GetById(UserId id)
     {
         await Task.CompletedTask;
         return _users.FirstOrDefault(x => x.Id == id);
