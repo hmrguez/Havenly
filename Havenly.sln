@@ -4,11 +4,11 @@ VisualStudioVersion = 17.8.0.0
 MinimumVisualStudioVersion = 17.8.0.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Havenly.Domain", "src\Havenly.Domain\Havenly.Domain.csproj", "{6AA08034-7D17-464E-A82B-DD352E853DB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Havenly.Application", "Havenly.Application\Havenly.Application.csproj", "{3F978841-22BA-4179-AD63-9FDB958CDEE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Havenly.Application", "src\Havenly.Application\Havenly.Application.csproj", "{3F978841-22BA-4179-AD63-9FDB958CDEE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Havenly.Infrastructure", "Havenly.Infrastructure\Havenly.Infrastructure.csproj", "{F749461D-55DD-4813-83FC-EC24868EC27B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Havenly.Infrastructure", "src\Havenly.Infrastructure\Havenly.Infrastructure.csproj", "{F749461D-55DD-4813-83FC-EC24868EC27B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Havenly.Api", "Havenly.Api\Havenly.Api.csproj", "{0C46AA01-A889-4D32-A616-007369704792}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Havenly.Api", "src\Havenly.Api\Havenly.Api.csproj", "{0C46AA01-A889-4D32-A616-007369704792}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Havenly.Contracts", "src\Havenly.Contracts\Havenly.Contracts.csproj", "{5DF42084-CDA1-4771-86A0-581D45F9596D}"
 EndProject
