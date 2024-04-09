@@ -3,7 +3,7 @@ using Domain.Errors;
 using Havenly.Application.Common.Interfaces.Authentication;
 using Havenly.Application.Common.Interfaces.Persistence;
 
-namespace Havenly.Application.Authentication;
+namespace Havenly.Application.Authentication.Services;
 
 public class AuthenticationService(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository)
     : IAuthenticationService

@@ -1,3 +1,4 @@
+using AppAny.HotChocolate.FluentValidation;
 using Havenly.Api.Authentication;
 using Havenly.Api.Users;
 
@@ -9,6 +10,7 @@ public static class GraphQlTypes
     {
         services
             .AddGraphQLServer()
+            .AddFluentValidation()
             .AddUsers()
             .AddAuthentication();
 

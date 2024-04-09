@@ -1,4 +1,4 @@
-namespace Havenly.Application.Authentication;
+namespace Havenly.Application.Authentication.Services;
 
 public interface IAuthenticationService
 {

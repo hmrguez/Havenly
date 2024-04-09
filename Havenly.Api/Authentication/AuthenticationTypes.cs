@@ -1,4 +1,6 @@
+using AppAny.HotChocolate.FluentValidation;
 using Domain.Errors;
+using Havenly.Application.Authentication.Validation;
 using HotChocolate.Execution.Configuration;
 
 namespace Havenly.Api.Authentication;
