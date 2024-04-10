@@ -1,16 +1,19 @@
 using Domain.Entities;
 using Domain.Errors;
+using Domain.ValueObjects;
 using Havenly.Application.Common.Interfaces.Authentication;
 using Havenly.Application.Common.Interfaces.Persistence;
 
 namespace Havenly.Application.Authentication.Services;
 
-public class AuthenticationService(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository)
+public class AuthenticationService(IJwtTokenGenerator jwtTokenGenerator, IRepository<User, UserId> userRepository)
     : IAuthenticationService
 {
     public async Task<AuthenticationResponse> Login(LoginRequest input)
     {
-        if (await userRepository.GetByEmail(input.Email) is not { } user)
+        var user = await userRepository.GetByProperty(u => u.Email, input.Email);
+
+        if (user is null)
             throw new AuthenticationErrors.InvalidCredentialsException("Invalid Email");
 
         if (user.Password != input.Password)
@@ -21,7 +24,9 @@ public class AuthenticationService(IJwtTokenGenerator jwtTokenGenerator, IUserRe
 
     public async Task<AuthenticationResponse> Register(RegisterRequest input)
     {
-        if (await userRepository.GetByEmail(input.Email) != null)
+        var existingUser = await userRepository.GetByProperty(u => u.Email, input.Email);
+
+        if (existingUser != null)
             throw new AuthenticationErrors.DuplicateUserException("Duplicate User");
 
         var user = User.Create(

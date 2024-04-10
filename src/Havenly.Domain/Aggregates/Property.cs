@@ -38,4 +38,6 @@ public class Property : AggregateRoot<PropertyId>
     {
         return new Property(PropertyId.CreateUnique(), address, type, ownerId, owner);
     }
+    
+    
 }
