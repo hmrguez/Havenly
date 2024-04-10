@@ -1,5 +1,5 @@
 using Havenly.Api;
-using Havenly.Api.Middleware;
+using Havenly.Api.Common.Mapping;
 using Havenly.Application;
 using Havenly.Infrastructure;
 
@@ -13,12 +13,12 @@ var builder = WebApplication.CreateSlimBuilder(args);
         .AddInfrastructure(builder.Configuration)
         .AddLogging()
         .AddSingleton<IErrorFilter, LogErrorFilter>()
-        .AddGraphQl();
+        .AddGraphQl()
+        .AddMappings();
 }
 
 var app = builder.Build();
 {
-    app.UseMiddleware<ErrorHandlingMiddleware>();
     app.UseHttpsRedirection();
     app.MapGraphQL();
     app.Run();

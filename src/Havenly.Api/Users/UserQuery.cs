@@ -1,5 +1,6 @@
 namespace Havenly.Api.Users;
 
+[ExtendObjectType("Query")]
 public class UserQuery
 {
     public List<User> GetAllUsers()

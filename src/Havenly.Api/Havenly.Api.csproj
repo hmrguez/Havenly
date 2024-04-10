@@ -13,6 +13,8 @@
         <PackageReference Include="HotChocolate" Version="14.0.0-p.86"/>
         <PackageReference Include="HotChocolate.AspNetCore" Version="14.0.0-p.86"/>
         <PackageReference Include="HotChocolate.AspNetCore.Playground" Version="10.5.5"/>
+        <PackageReference Include="Mapster" Version="7.4.1-pre01" />
+        <PackageReference Include="Mapster.DependencyInjection" Version="1.0.2-pre01" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0-preview.2.24128.4">
           <PrivateAssets>all</PrivateAssets>
@@ -25,6 +27,10 @@
     <ItemGroup>
         <ProjectReference Include="..\Havenly.Application\Havenly.Application.csproj"/>
         <ProjectReference Include="..\Havenly.Infrastructure\Havenly.Infrastructure.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Property\" />
     </ItemGroup>
 
 </Project>
