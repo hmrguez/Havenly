@@ -1,4 +1,5 @@
 using FluentValidation;
+using Havenly.Application.Amenities;
 using Havenly.Application.Authentication;
 using Havenly.Application.Authentication.Services;
 using Havenly.Application.Authentication.Validation;
@@ -12,7 +13,7 @@ public static class DependencyInjection
     {
         // Services
         services.AddScoped<IAuthenticationService, AuthenticationService>();
-
+        services.AddScoped<IAmenityService, AmenityService>();
 
         // Validators
         services.AddScoped<IValidator<RegisterRequest>, RegisterValidator>();

@@ -1,7 +1,6 @@
 using AppAny.HotChocolate.FluentValidation;
-using Havenly.Api.Amenity;
+using Havenly.Api.Amenities;
 using Havenly.Api.Authentication;
-using Havenly.Api.Users;
 
 namespace Havenly.Api;
 
@@ -13,7 +12,7 @@ public static class GraphQlTypes
             .AddGraphQLServer()
             .AddFluentValidation()
             .AddQueryType(q => q.Name("Query"))
-            .AddUsers()
+            .AddMutationType(q => q.Name("Mutation"))
             .AddAuthentication()
             .AddAmenities();
 

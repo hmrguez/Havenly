@@ -4,6 +4,8 @@ using Havenly.Application.Authentication.Services;
 
 namespace Havenly.Api.Authentication;
 
+
+[ExtendObjectType("Mutation")]
 public class AuthenticationMutation(IAuthenticationService authenticationService)
 {
     public Task<AuthenticationResponse> Login([UseFluentValidation] LoginRequest input)

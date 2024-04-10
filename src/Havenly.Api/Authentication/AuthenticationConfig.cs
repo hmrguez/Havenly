@@ -10,12 +10,12 @@ public static class AuthenticationConfig
     public static IRequestExecutorBuilder AddAuthentication(this IRequestExecutorBuilder builder)
     {
         return builder
-            .AddMutationType<AuthenticationMutation>()
+            .AddType<AuthenticationMutation>()
             .AddErrorFilter(error => error.Exception switch
             {
                 AuthenticationErrors.DuplicateUserException => error.WithMessage("Duplicate User"),
                 AuthenticationErrors.InvalidCredentialsException => error.WithMessage("Invalid credentials"),
-                _ => error
+                _ => error.RemoveLocations().RemovePath()
             });
     }
 }
