@@ -17,7 +17,7 @@ public class Tenant : AggregateRoot<TenantId>
     {
     }
 
-    private Tenant(TenantId id, UserId userId, int age, int averageSalary, int deposit, string contactInfo) : base(id)
+    private Tenant(TenantId id, UserId userId, int age, int averageSalary, int deposit) : base(id)
     {
         Age = age;
         Deposit = deposit;
@@ -25,8 +25,8 @@ public class Tenant : AggregateRoot<TenantId>
         UserId = userId;
     }
 
-    public static Tenant Create(UserId userId, int age, int averageSalary, int deposit, string contactInfo)
+    public static Tenant Create(UserId userId, int age, int averageSalary, int deposit)
     {
-        return new Tenant(TenantId.CreateUnique(), userId, age, averageSalary, deposit, contactInfo);
+        return new Tenant(TenantId.CreateUnique(), userId, age, averageSalary, deposit);
     }
 }

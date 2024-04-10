@@ -1,3 +1,4 @@
+using Domain.Entities;
 using Havenly.Contracts.Amenity;
 using Mapster;
 
@@ -7,7 +8,7 @@ public class AmenityMappingConfig : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<Domain.Entities.Amenity, AmenityDto>()
+        config.NewConfig<Amenity, AmenityDto>()
             .Map(dest => dest.Id, src => src.Id.Value)
             .Map(dest => dest.Name, src => src.Name);
     }
