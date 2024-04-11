@@ -3,6 +3,7 @@ using Havenly.Application.Amenities;
 using Havenly.Application.Authentication;
 using Havenly.Application.Authentication.Services;
 using Havenly.Application.Authentication.Validation;
+using Havenly.Application.Owners;
 using Havenly.Application.Tenants;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +17,7 @@ public static class DependencyInjection
         services.AddScoped<IAuthenticationService, AuthenticationService>();
         services.AddScoped<IAmenityService, AmenityService>();
         services.AddScoped<ITenantService, TenantService>();
+        services.AddScoped<IOwnerService, OwnerService>();
         
 
         // Validators

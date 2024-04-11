@@ -1,6 +1,8 @@
 using AppAny.HotChocolate.FluentValidation;
 using Havenly.Api.Amenities;
 using Havenly.Api.Authentication;
+using Havenly.Api.Owners;
+using Havenly.Api.Properties;
 using Havenly.Api.Tenants;
 
 namespace Havenly.Api;
@@ -16,7 +18,9 @@ public static class GraphQlTypes
             .AddMutationType(q => q.Name("Mutation"))
             .AddAuthentication()
             .AddAmenities()
-            .AddTenants();
+            .AddTenants()
+            .AddOwners()
+            .AddProperties();
 
         return services;
     }

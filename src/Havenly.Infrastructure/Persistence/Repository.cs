@@ -18,7 +18,7 @@ public class Repository<T, TId> : IRepository<T, TId> where T : Entity<TId> wher
         using var context = _contextFactory.CreateDbContext();
         var query = context.Set<T>().AsQueryable();
         query = includes.Aggregate(query, (current, include) => current.Include(include));
-        
+
         return await query.FirstOrDefaultAsync(x => x.Id.Equals(id));
     }
 
@@ -29,10 +29,15 @@ public class Repository<T, TId> : IRepository<T, TId> where T : Entity<TId> wher
             .FirstOrDefault(x => EqualityComparer<TProp>.Default.Equals(property(x), value));
     }
 
-    public async Task<IEnumerable<T>> GetAll(Func<T, bool>? predicate = null)
+    public async Task<IEnumerable<T>> GetAll(Func<T, bool>? predicate = null, params string[] includes)
     {
         using var context = _contextFactory.CreateDbContext();
-        return predicate == null ? await context.Set<T>().ToListAsync() : context.Set<T>().Where(predicate).ToList();
+        var query = context.Set<T>().AsQueryable();
+        query = includes.Aggregate(query, (current, include) => current.Include(include));
+
+        return predicate == null
+            ? await query.ToListAsync()
+            : query.Where(predicate).ToList();
     }
 
     public async Task Add(T entity)
@@ -49,10 +54,14 @@ public class Repository<T, TId> : IRepository<T, TId> where T : Entity<TId> wher
         await context.SaveChangesAsync();
     }
 
-    public async Task Delete(T entity)
+    public async Task Delete(TId id)
     {
         using var context = _contextFactory.CreateDbContext();
-        context.Set<T>().Remove(entity);
-        await context.SaveChangesAsync();
+        var entity = await context.Set<T>().FindAsync(id);
+        if (entity != null)
+        {
+            context.Set<T>().Remove(entity);
+            await context.SaveChangesAsync();
+        }
     }
 }

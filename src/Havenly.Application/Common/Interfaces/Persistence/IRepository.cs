@@ -10,9 +10,9 @@ namespace Havenly.Application.Common.Interfaces.Persistence
     {
         Task<T?> GetById(TId id, params string[] includes);
         Task<T?> GetByProperty<TProp>(Func<T, TProp> property, TProp value);
-        Task<IEnumerable<T>> GetAll(Func<T, bool>? predicate = null);
+        Task<IEnumerable<T>> GetAll(Func<T, bool>? predicate = null, params string[] includes);
         Task Add(T entity);
         Task Update(T entity);
-        Task Delete(T entity);
+        Task Delete(TId id);
     }
 }

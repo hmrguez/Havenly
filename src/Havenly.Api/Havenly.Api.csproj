@@ -29,8 +29,4 @@
         <ProjectReference Include="..\Havenly.Infrastructure\Havenly.Infrastructure.csproj"/>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Property\" />
-    </ItemGroup>
-
 </Project>
