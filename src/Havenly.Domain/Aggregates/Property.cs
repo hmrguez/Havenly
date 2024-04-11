@@ -25,7 +25,7 @@ public class Property : AggregateRoot<PropertyId>
     {
     }
 
-    private Property(PropertyId id, Address address, PropertyType type, OwnerId ownerId, Owner owner) : base(id)
+    public Property(PropertyId id, Address address, PropertyType type, OwnerId ownerId, Owner owner) : base(id)
     {
         Address = address;
         Type = type;
@@ -38,6 +38,4 @@ public class Property : AggregateRoot<PropertyId>
     {
         return new Property(PropertyId.CreateUnique(), address, type, ownerId, owner);
     }
-    
-    
 }

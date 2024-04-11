@@ -10,7 +10,8 @@ public class PropertyService : IPropertyService
     private readonly IRepository<Property, PropertyId> _propertyRepository;
     private readonly IRepository<Amenity, AmenityId> _amenityRepository;
 
-    public PropertyService(IRepository<Property, PropertyId> propertyRepository, IRepository<Amenity, AmenityId> amenityRepository)
+    public PropertyService(IRepository<Property, PropertyId> propertyRepository,
+        IRepository<Amenity, AmenityId> amenityRepository)
     {
         _propertyRepository = propertyRepository;
         _amenityRepository = amenityRepository;
@@ -33,9 +34,9 @@ public class PropertyService : IPropertyService
 
     public async Task<PropertyId> ListProperty(Property property)
     {
-        var newProperty = Property.Create(property.Address, property.Type, property.OwnerId, property.Owner);
-        await _propertyRepository.Add(newProperty);
-        return newProperty.Id;
+        property.Id = PropertyId.CreateUnique();
+        await _propertyRepository.Add(property);
+        return property.Id;
     }
 
     public async Task<PropertyId> UpdateProperty(Property property)

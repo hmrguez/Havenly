@@ -10,11 +10,11 @@ using MapsterMapper;
 namespace Havenly.Api.Owners;
 
 [ExtendObjectType("Query")]
-public class OwnerQuery(IMapper mapper, IOwnerService tenantService)
+public class OwnerQuery(IMapper mapper, IOwnerService ownerService)
 {
     public async Task<OwnerDto> GetOwner(Guid guid)
     {
-        var tenant = await tenantService.GetOwner(new OwnerId(guid));
+        var tenant = await ownerService.GetOwner(new OwnerId(guid));
         if (tenant == null)
         {
             throw new Exception("Owner not found");

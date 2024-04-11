@@ -12,9 +12,9 @@ namespace Havenly.Api.Tenants;
 [ExtendObjectType("Query")]
 public class TenantQuery(IMapper mapper, ITenantService tenantService)
 {
-    public async Task<TenantDto> GetTenant(Guid guid)
+    public async Task<TenantDto> GetTenant(Guid id)
     {
-        var tenant = await tenantService.GetTenant(new TenantId(guid));
+        var tenant = await tenantService.GetTenant(new TenantId(id));
         if (tenant == null)
         {
             throw new Exception("Tenant not found");

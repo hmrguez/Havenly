@@ -1,3 +1,4 @@
+using Domain.ValueObjects;
 using HotChocolate.Execution.Configuration;
 
 // ReSharper disable once CheckNamespace

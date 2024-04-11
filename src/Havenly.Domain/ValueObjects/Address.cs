@@ -10,11 +10,12 @@ public class Address : ValueObject
     public string Country { get; set; }
 
 
-    public Address(string street, string city, string zipCode)
+    public Address(string street, string city, string zipCode, string country)
     {
         Street = street;
         City = city;
         ZipCode = zipCode;
+        Country = country;
     }
 
     public override IEnumerable<object> GetEqualityComponents()

@@ -20,7 +20,8 @@ public static class GraphQlTypes
             .AddAmenities()
             .AddTenants()
             .AddOwners()
-            .AddProperties();
+            .AddProperties()
+            .ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true);  
 
         return services;
     }

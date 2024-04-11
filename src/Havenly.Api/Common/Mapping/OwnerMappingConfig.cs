@@ -1,6 +1,8 @@
 using Domain.Aggregates;
 using Domain.Entities;
+using Domain.ValueObjects;
 using Havenly.Contracts.Owners;
+using Havenly.Contracts.Properties;
 using Havenly.Contracts.Tenants;
 using Havenly.Contracts.Users;
 using Mapster;
@@ -11,14 +13,20 @@ public class OwnerMappingConfig : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<Owner, OwnerDto>()
-            .Map(dest => dest.Id, src => src.Id.Value)
-            .Map(dest => dest.UserId, src => src.UserId.Value)
-            .Map(dest => dest.User, src => src.User.Adapt<UserDto>());
+        config.NewConfig<Owner, OwnerDto>().MapWith(src => new OwnerDto
+        {
+            Id = src.Id.Value,
+            Properties = src.Properties.Adapt<List<PropertyDto>>(),
+            User = src.User.Adapt<UserDto>(),
+            UserId = src.UserId.Value
+        });
 
-        config.NewConfig<OwnerDto, Owner>()
-            .Map(dest => dest.Id.Value, src => src.Id)
-            .Map(dest => dest.UserId.Value, src => src.UserId)
-            .Map(dest => dest.User, src => src.User.Adapt<User>());
+        config.NewConfig<OwnerDto, Owner>().MapWith(src => new Owner
+        {
+            Id = new OwnerId(src.Id),
+            Properties = src.Properties.Adapt<List<Property>>(),
+            User = src.User.Adapt<User>(),
+            UserId = new UserId(src.UserId)
+        });
     }
 }
