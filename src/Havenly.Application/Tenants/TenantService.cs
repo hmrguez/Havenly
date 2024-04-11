@@ -21,6 +21,6 @@ public class TenantService(IRepository<Tenant, TenantId> repository) : ITenantSe
 
     public Task<Tenant?> GetTenant(TenantId tenantId)
     {
-        return repository.GetById(tenantId);
+        return repository.GetById(tenantId, "User");
     }
 }

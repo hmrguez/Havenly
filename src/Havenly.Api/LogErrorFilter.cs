@@ -11,7 +11,7 @@ public class LogErrorFilter : IErrorFilter
 
     public IError OnError(IError error)
     {
-        _logger.LogError(error.Exception, "An error occurred while processing a GraphQL request.");
+        _logger.LogError(error.Exception?.Message, "An error occurred while processing a GraphQL request.");
         return error;
     }
 }

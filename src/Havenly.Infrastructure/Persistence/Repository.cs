@@ -13,10 +13,13 @@ public class Repository<T, TId> : IRepository<T, TId> where T : Entity<TId> wher
         _contextFactory = contextFactory;
     }
 
-    public async Task<T?> GetById(TId id)
+    public async Task<T?> GetById(TId id, params string[] includes)
     {
         using var context = _contextFactory.CreateDbContext();
-        return await context.Set<T>().FindAsync(id);
+        var query = context.Set<T>().AsQueryable();
+        query = includes.Aggregate(query, (current, include) => current.Include(include));
+        
+        return await query.FirstOrDefaultAsync(x => x.Id.Equals(id));
     }
 
     public async Task<T?> GetByProperty<TProp>(Func<T, TProp> property, TProp value)
