@@ -8,7 +8,7 @@ public class TenantService(IRepository<Tenant, TenantId> repository) : ITenantSe
 {
     public async Task<TenantId> CreateTenant(Tenant tenant)
     {
-        var newTenant = Tenant.Create(tenant.UserId, tenant.Age, tenant.AverageSalary, tenant.Deposit);
+        var newTenant = Tenant.Create(tenant.UserId, tenant.Age, tenant.AverageSalary, tenant.Gender);
         await repository.Add(newTenant);
         return newTenant.Id;
     }

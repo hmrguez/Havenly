@@ -16,7 +16,7 @@ public class TenantMappingConfig : IRegister
             {
                 Age = src.Age,
                 AverageSalary = src.AverageSalary,
-                Deposit = src.Deposit,
+                Gender = src.Gender,
                 Id = new TenantId(src.Id),
                 User = src.User.Adapt<User>(),
                 UserId = new UserId(src.UserId)
@@ -27,7 +27,7 @@ public class TenantMappingConfig : IRegister
             {
                 Age = src.Age,
                 AverageSalary = src.AverageSalary,
-                Deposit = src.Deposit,
+                Gender = src.Gender,
                 Id = src.Id.Value,
                 User = src.User.Adapt<UserDto>(),
                 UserId = src.UserId.Value

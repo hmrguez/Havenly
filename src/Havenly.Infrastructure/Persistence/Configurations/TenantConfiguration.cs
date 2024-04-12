@@ -21,7 +21,7 @@ public class TenantConfiguration : IEntityTypeConfiguration<Tenant>
         builder.Property(x => x.AverageSalary)
             .IsRequired();
 
-        builder.Property(x => x.Deposit)
+        builder.Property(x => x.Gender)
             .IsRequired();
 
         builder.HasOne(x => x.User)
