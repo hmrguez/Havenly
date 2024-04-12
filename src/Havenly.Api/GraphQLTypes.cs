@@ -1,6 +1,7 @@
 using AppAny.HotChocolate.FluentValidation;
 using Havenly.Api.Amenities;
 using Havenly.Api.Authentication;
+using Havenly.Api.Leases;
 using Havenly.Api.Owners;
 using Havenly.Api.Properties;
 using Havenly.Api.Tenants;
@@ -21,7 +22,8 @@ public static class GraphQlTypes
             .AddTenants()
             .AddOwners()
             .AddProperties()
-            .ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true);  
+            .AddLeases();
+            // .ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true);  
 
         return services;
     }
