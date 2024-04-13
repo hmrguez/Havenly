@@ -34,7 +34,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    this.apollo.mutate({
+    return this.apollo.mutate({
       mutation: LOGIN_MUTATION,
       variables: {
         input: new LoginRequestInput(username, password)
@@ -48,11 +48,11 @@ export class AuthenticationService {
           console.log('Error:', error);
         }
       })
-    ).subscribe();
+    );
   }
 
   register(username: string, email: string, password: string, contactInfo: string) {
-    this.apollo.mutate({
+    return this.apollo.mutate({
       mutation: REGISTER_MUTATION,
       variables: {
         input: new RegisterRequestInput(email, password, username, contactInfo)
@@ -66,7 +66,7 @@ export class AuthenticationService {
           console.log('Error:', error);
         }
       })
-    ).subscribe();
+    );
   }
 
   logout() {
