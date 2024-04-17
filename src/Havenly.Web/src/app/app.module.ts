@@ -9,20 +9,30 @@ import { HttpClientModule } from '@angular/common/http';
 import { GraphQLModule } from './graphql.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TenantsComponent } from './tenants/tenants.component';
+import {TableModule} from "primeng/table";
+import { PropertiesComponent } from './properties/properties.component';
+import {DataViewModule} from "primeng/dataview";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    TenantsComponent,
+    PropertiesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    GraphQLModule
+    GraphQLModule,
+    TableModule,
+    DataViewModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

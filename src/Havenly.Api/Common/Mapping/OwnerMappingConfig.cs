@@ -17,7 +17,9 @@ public class OwnerMappingConfig : IRegister
         {
             Id = src.Id.Value,
             Properties = src.Properties.Adapt<List<PropertyDto>>(),
-            User = src.User.Adapt<UserDto>(),
+            ContactInfo = src.User.ContactInfo,
+            Email = src.User.Email,
+            Name = src.User.Name,
             UserId = src.UserId.Value
         });
 
@@ -25,7 +27,6 @@ public class OwnerMappingConfig : IRegister
         {
             Id = new OwnerId(src.Id),
             Properties = src.Properties.Adapt<List<Property>>(),
-            User = src.User.Adapt<User>(),
             UserId = new UserId(src.UserId)
         });
     }

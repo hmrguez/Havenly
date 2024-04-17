@@ -1,0 +1,23 @@
+<p-dataView [value]="properties">
+  <ng-template let-properties pTemplate="list">
+
+    @for (property of properties; track property.id) {
+      <div class="p-col-12">
+        <div class="product-list-item">
+          <div class="product-list-detail">
+            <h5>{{ property.Street }}, {{ property.City }}, {{ property.ZipCode }}, {{ property.Country }}</h5>
+            <i class="pi pi-tag product-category-icon"></i>
+            <span class="product-category">{{ propertyTypeMap.get(property.Type) }}</span>
+          </div>
+          <div class="product-list-action">
+            <h6>${{ property.Price }}</h6>
+            <p-button icon="pi pi-pencil" (click)="showProperty(property)"></p-button>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      Empty
+    }
+
+  </ng-template>
+</p-dataView>

@@ -18,7 +18,7 @@ public class TenantMappingConfig : IRegister
                 AverageSalary = src.AverageSalary,
                 Gender = src.Gender,
                 Id = new TenantId(src.Id),
-                User = src.User.Adapt<User>(),
+                User = null!,
                 UserId = new UserId(src.UserId)
             });
 
@@ -29,7 +29,9 @@ public class TenantMappingConfig : IRegister
                 AverageSalary = src.AverageSalary,
                 Gender = src.Gender,
                 Id = src.Id.Value,
-                User = src.User.Adapt<UserDto>(),
+                ContactInfo = src.User.ContactInfo,
+                Email = src.User.Email,
+                Name = src.User.Name,
                 UserId = src.UserId.Value
             });
     }

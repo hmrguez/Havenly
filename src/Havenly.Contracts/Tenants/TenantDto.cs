@@ -7,7 +7,9 @@ public class TenantDto
 {
     public Guid Id { get; set; }
     public Guid UserId { get; set; }
-    public UserDto? User { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+    public string ContactInfo { get; set; }
     public Gender Gender { get; set; }
     public int AverageSalary { get; set; }
     public int Age { get; set; }
