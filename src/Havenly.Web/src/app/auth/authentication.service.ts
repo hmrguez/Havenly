@@ -49,6 +49,16 @@ export class AuthenticationService {
     return decodedToken.isOwner;
   }
 
+  public get ownerId(): string{
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      return '';
+    }
+
+    const decodedToken: any = this.jwtHelper.decodeToken(token);
+    return decodedToken.ownerId;
+  }
+
   login(username: string, password: string) {
     return this.apollo.mutate({
       mutation: LOGIN_MUTATION,

@@ -19,7 +19,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         _jwtSettings = jwtOptions.Value;
     }
 
-    public string GenerateToken(Guid userId, string email, bool isOwner)
+    public string GenerateToken(Guid userId, string email, bool isOwner, Guid ownerId)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret));
         var signingKey = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -29,7 +29,8 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             new(JwtRegisteredClaimNames.Sub, userId.ToString()),
             new(JwtRegisteredClaimNames.Email, email),
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new("isOwner", isOwner.ToString()) // Add the "isOwner" claim
+            new("isOwner", isOwner.ToString()),
+            new ("ownerId", ownerId.ToString())
 
         };
 

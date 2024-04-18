@@ -6,6 +6,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SelectItem} from "primeng/api";
 import {Tenant} from "../common/tenant";
 import {LeasesService} from "../leases/leases.service";
+import {AuthenticationService} from "../auth/authentication.service";
 
 @Component({
   selector: 'app-properties',
@@ -25,7 +26,7 @@ export class PropertiesComponent {
     <SelectItem>{label: 'Other', value: "UNDEFINED"},
   ];
 
-  constructor(private propertiesService: PropertiesService, private leaseService: LeasesService) {
+  constructor(private propertiesService: PropertiesService, private leaseService: LeasesService, private authService: AuthenticationService) {
 
     this.tenantForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -41,7 +42,9 @@ export class PropertiesComponent {
       deposit: new FormControl('', [Validators.required, Validators.min(0)])
     });
 
-    this.propertiesService.getPropertiesByOwner('c5d853ef-97aa-46dc-824c-95e0dbb0f94c')
+
+    console.log(authService.ownerId)
+    this.propertiesService.getPropertiesByOwner(authService.ownerId)
       .subscribe({
         next: value => {
           console.log(value)

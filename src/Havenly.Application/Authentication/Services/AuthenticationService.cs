@@ -23,7 +23,14 @@ public class AuthenticationService(
         if (user.Password != input.Password)
             throw new AuthenticationErrors.InvalidCredentialsException("Invalid Password");
 
-        return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id.Value, input.Email, user.IsOwner));
+        if (!user.IsOwner)
+            return new AuthenticationResponse(Guid.NewGuid(),
+                jwtTokenGenerator.GenerateToken(user.Id.Value, input.Email, user.IsOwner, new Guid()));
+        
+        var owner = await ownerRepository.GetByProperty(o => o.UserId, user.Id);
+        return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id.Value, input.Email, user.IsOwner, owner!.Id.Value));
+
+
     }
 
     public async Task<AuthenticationResponse> Register(RegisterRequest input)
@@ -45,6 +52,6 @@ public class AuthenticationService(
         await userRepository.Add(user);
         await ownerRepository.Add(owner);
 
-        return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id.Value, user.Email, true));
+        return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id.Value, user.Email, true, owner.Id.Value));
     }
 }
