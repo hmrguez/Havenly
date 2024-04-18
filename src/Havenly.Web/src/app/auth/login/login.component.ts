@@ -20,6 +20,10 @@ export class LoginComponent {
   }
 
   register() {
-    this.authService.register("username", this.email, this.password, "contactInfo");
+    this.authService.register("username", this.email, this.password, "contactInfo")
+      .subscribe({
+        next: _ => this.login(),
+        error: err => console.error('Registration failed', err)
+      });
   }
 }

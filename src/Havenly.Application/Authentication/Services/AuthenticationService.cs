@@ -1,3 +1,4 @@
+using Domain.Aggregates;
 using Domain.Entities;
 using Domain.Errors;
 using Domain.ValueObjects;
@@ -6,7 +7,10 @@ using Havenly.Application.Common.Interfaces.Persistence;
 
 namespace Havenly.Application.Authentication.Services;
 
-public class AuthenticationService(IJwtTokenGenerator jwtTokenGenerator, IRepository<User, UserId> userRepository)
+public class AuthenticationService(
+    IJwtTokenGenerator jwtTokenGenerator,
+    IRepository<User, UserId> userRepository,
+    IRepository<Owner, OwnerId> ownerRepository)
     : IAuthenticationService
 {
     public async Task<AuthenticationResponse> Login(LoginRequest input)
@@ -19,7 +23,7 @@ public class AuthenticationService(IJwtTokenGenerator jwtTokenGenerator, IReposi
         if (user.Password != input.Password)
             throw new AuthenticationErrors.InvalidCredentialsException("Invalid Password");
 
-        return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id.Value, input.Email));
+        return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id.Value, input.Email, user.IsOwner));
     }
 
     public async Task<AuthenticationResponse> Register(RegisterRequest input)
@@ -36,7 +40,11 @@ public class AuthenticationService(IJwtTokenGenerator jwtTokenGenerator, IReposi
             false,
             input.ContactInfo);
 
+        var owner = Owner.Create(user.Id);
+
         await userRepository.Add(user);
-        return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id.Value, user.Email));
+        await ownerRepository.Add(owner);
+
+        return new AuthenticationResponse(Guid.NewGuid(), jwtTokenGenerator.GenerateToken(user.Id.Value, user.Email, true));
     }
 }

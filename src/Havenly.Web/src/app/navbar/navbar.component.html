@@ -2,7 +2,12 @@
   <ul>
     <li><a routerLink="/dashboard">Home</a></li>
     <li><a routerLink="/tenants">Tenants</a></li>
-    <li><a routerLink="/login">Login</a></li>
-    <li *ngIf="authService.loggedIn"><a (click)="authService.logout()">Logout</a></li>
+
+    @if (!authService.loggedIn) {
+      <li><a routerLink="/login">Login</a></li>
+    } @else {
+      <li><a (click)="authService.logout()">Logout</a></li>
+    }
+
   </ul>
 </nav>

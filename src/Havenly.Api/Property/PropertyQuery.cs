@@ -26,9 +26,9 @@ public class PropertyQuery(IMapper mapper, IPropertyService propertyService)
         return mapper.Map<IEnumerable<PropertyDto>>(properties);
     }
     
-    public async Task<IEnumerable<PropertyDto>> GetPropertiesByOwner(Guid guid)
+    public async Task<IEnumerable<PropertyDto>> GetPropertiesByOwner(Guid ownerId)
     {
-        var properties = await propertyService.GetPropertiesByOwner(new OwnerId(guid));
+        var properties = await propertyService.GetPropertiesByOwner(new OwnerId(ownerId));
         return mapper.Map<IEnumerable<PropertyDto>>(properties);
     }
 }

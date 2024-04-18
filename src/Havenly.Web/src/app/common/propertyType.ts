@@ -1,8 +1,8 @@
 export enum PropertyType{
-  Apartment,
-  House,
-  Commercial,
-  Room
+  Apartment = "APARTMENT",
+  House = "HOUSE",
+  Commercial = "COMMERCIAL",
+  Room = "ROOM"
 }
 
 export const propertyTypeMap = new Map([

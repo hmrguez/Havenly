@@ -14,6 +14,8 @@ import {TableModule} from "primeng/table";
 import { PropertiesComponent } from './properties/properties.component';
 import {DataViewModule} from "primeng/dataview";
 import {ButtonModule} from "primeng/button";
+import {JwtHelperService, JwtModule} from "@auth0/angular-jwt";
+import {environment} from "../environment/environment";
 
 @NgModule({
   declarations: [
@@ -32,10 +34,23 @@ import {ButtonModule} from "primeng/button";
     GraphQLModule,
     TableModule,
     DataViewModule,
-    ButtonModule
+    ButtonModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: [environment.backendUrl], // replace with your API domain
+        disallowedRoutes: [], // add routes that should not attach the token
+      },
+    }),
   ],
-  providers: [],
+  providers: [
+    JwtHelperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
 }

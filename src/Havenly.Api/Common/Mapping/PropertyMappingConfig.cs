@@ -20,6 +20,7 @@ public class PropertyMappingConfig : IRegister
                 Street = src.Address.Street,
                 ZipCode = src.Address.ZipCode,
                 City = src.Address.ZipCode,
+                Country = src.Address.Country,
                 Amenities = src.Amenities.Adapt<List<AmenityDto>>(),
                 OwnerId = src.OwnerId.Value,
                 RentalPrice = src.RentalPrice,
