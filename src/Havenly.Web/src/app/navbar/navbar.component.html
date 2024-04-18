@@ -1,7 +1,10 @@
 <nav>
   <ul>
     <li><a routerLink="/dashboard">Home</a></li>
-    <li><a routerLink="/tenants">Tenants</a></li>
+
+    @if (authService.isOwner) {
+      <li><a routerLink="/tenants">Tenants</a></li>
+    }
 
     @if (!authService.loggedIn) {
       <li><a routerLink="/login">Login</a></li>

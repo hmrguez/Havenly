@@ -1,8 +1,7 @@
-// src/Havenly.Application/Leases/ILeaseService.cs
-
 using System;
 using System.Threading.Tasks;
 using Domain.Aggregates;
+using Havenly.Contracts.Leases;
 
 namespace Havenly.Application.Leases
 {
@@ -13,5 +12,6 @@ namespace Havenly.Application.Leases
         Task<Guid> RenewLease(Guid leaseId);
         Task<Guid> TerminateLease(Guid leaseId);
         Task<Guid> UpdateLease(Lease lease);
+        Task<Guid> CreateFromScratch(CreateLeaseTenantDto lease);
     }
 }

@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import { LoginComponent } from './auth/login/login.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { GraphQLModule } from './graphql.module';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -16,6 +16,12 @@ import {DataViewModule} from "primeng/dataview";
 import {ButtonModule} from "primeng/button";
 import {JwtHelperService, JwtModule} from "@auth0/angular-jwt";
 import {environment} from "../environment/environment";
+import {DropdownModule} from "primeng/dropdown";
+import {DialogModule} from "primeng/dialog";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {InputTextModule} from "primeng/inputtext";
+import {PaginatorModule} from "primeng/paginator";
+import {CalendarModule} from "primeng/calendar";
 
 @NgModule({
   declarations: [
@@ -35,6 +41,7 @@ import {environment} from "../environment/environment";
     TableModule,
     DataViewModule,
     ButtonModule,
+    BrowserAnimationsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -42,6 +49,12 @@ import {environment} from "../environment/environment";
         disallowedRoutes: [], // add routes that should not attach the token
       },
     }),
+    DropdownModule,
+    DialogModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    PaginatorModule,
+    CalendarModule,
   ],
   providers: [
     JwtHelperService

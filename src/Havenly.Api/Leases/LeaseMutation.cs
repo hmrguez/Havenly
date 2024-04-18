@@ -18,6 +18,12 @@ public class LeaseMutation
         _leaseService = leaseService;
     }
 
+    public async Task<Guid> CreateFromScratch(CreateLeaseTenantDto dto)
+    {
+        var createdLease = await _leaseService.CreateFromScratch(dto);
+        return createdLease;
+    }
+
     public async Task<Guid> CreateLease(LeaseDto leaseDto)
     {
         var lease = _mapper.Map<Lease>(leaseDto);

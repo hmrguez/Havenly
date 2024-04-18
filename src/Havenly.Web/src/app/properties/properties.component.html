@@ -11,7 +11,8 @@
           </div>
           <div class="product-list-action">
             <h6>${{ property.price }}</h6>
-            <p-button icon="pi pi-pencil" (click)="showProperty(property)"></p-button>
+            <p-button icon="pi pi-times" (click)="showProperty(property)"></p-button>
+            <p-button icon="pi pi-plus" (click)="addTenant(property)"></p-button>
           </div>
         </div>
       </div>
@@ -21,3 +22,20 @@
 
   </ng-template>
 </p-dataView>
+
+<p-dialog header="Header" [(visible)]="addTenantFlag" [modal]="true" [style]="{ width: '30rem' }" [draggable]="false" [resizable]="false">
+  <form [formGroup]="tenantForm" (ngSubmit)="onSubmit()">
+    <input pInputText formControlName="name" placeholder="Name">
+    <input pInputText formControlName="email" placeholder="Email">
+    <input pInputText formControlName="password" type="password" placeholder="Password">
+    <input pInputText formControlName="contactInfo" placeholder="Contact Info">
+    <p-dropdown appendTo="body" formControlName="gender" [options]="genders"></p-dropdown>
+    <p-inputNumber formControlName="averageSalary" placeholder="Average Salary"></p-inputNumber>
+    <p-inputNumber formControlName="age" placeholder="Age"></p-inputNumber>
+    <p-inputNumber formControlName="rent" placeholder="Rent"></p-inputNumber>
+    <p-calendar appendTo="body" formControlName="startDate" placeholder="Start Date" [showIcon]="true"></p-calendar>
+    <p-calendar appendTo="body" formControlName="endDate" placeholder="End Date" [showIcon]="true"></p-calendar>
+    <p-inputNumber formControlName="deposit" placeholder="Deposit"></p-inputNumber>
+    <p-button type="submit" label="Submit"></p-button>
+  </form>
+</p-dialog>
