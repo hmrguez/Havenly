@@ -85,7 +85,8 @@ It will be built using modern web technologies to ensure a responsive and engagi
 application to our users, we'll be utilizing `AWS CloudFront`. CloudFront is a fast content delivery network (CDN)
 service that securely delivers data, videos, applications, and APIs to users globally with low latency and high transfer
 speeds. This means our web application will be readily accessible to users around the world, providing them with a fast
-and seamless experience.
+and seamless experience. We will store the website related files in an `S3` bucket and let Cloudfront pick them up from
+there
 
 Secondly, we have our mobile application. This will be a native app, available for download from the App Store for iOS
 users and the Play Store for Android users. The mobile app will provide the same core functionality as the web
