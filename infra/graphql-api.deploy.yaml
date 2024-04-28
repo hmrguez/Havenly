@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: havenly-graphql
+  labels:
+    app: havenly-graphql
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: havenly-graphql
+  template:
+    metadata:
+      name: havenly-graphql
+      labels:
+        app: havenly-graphql
+    spec:
+      containers:
+        - name: havenly-graphql
+          image: havenly.api:dev
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: havenly-graphql
+spec:
+    selector:
+        app: havenly-graphql
+    ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 8080
+    type: NodePort
+      
